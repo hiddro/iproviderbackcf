@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.incloud</groupId>
-	<artifactId>iprovidersilvestri</artifactId>
+	<artifactId>iprovidercentenario</artifactId>
 	<packaging>${packaging.type}</packaging>
 
 	<name>iprovider_backend</name>
@@ -562,7 +562,7 @@
 	</dependencies>
 
 	<build>
-        <finalName>iprovidersilvestriback</finalName>
+        <finalName>iprovidercentenarioback</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
