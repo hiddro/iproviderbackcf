@@ -465,6 +465,12 @@
 			<groupId>net.sf.jasperreports</groupId>
 			<artifactId>jasperreports</artifactId>
 			<version>${jasperreport.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.lowagie</groupId>
+					<artifactId>itext</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>net.sf.jasperreports</groupId>
@@ -557,6 +563,12 @@
 		</dependency>
 
 
+		<!-- https://mvnrepository.com/artifact/commons-logging/commons-logging -->
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.2</version>
+		</dependency>
 
 
 	</dependencies>
@@ -579,30 +591,29 @@
 			</plugin>
 
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>jasperreports-maven-plugin</artifactId>
-				<version>1.0-beta-2</version>
+				<groupId>com.alexnederlof</groupId>
+				<artifactId>jasperreports-plugin</artifactId>
+				<version>2.8</version>
 				<executions>
 					<execution>
+						<phase>process-sources</phase>
 						<goals>
-							<goal>compile-reports</goal>
+							<goal>jasper</goal>
 						</goals>
-						<configuration>
-							<!--  jrxml file  directory-->
-							<sourceDirectory>src\\main\\resources\\reportes\\jrxml</sourceDirectory>
-							<sourceFileExt>.jrxml</sourceFileExt>
-							<compiler>net.sf.jasperreports.engine.design.JRJavacCompiler</compiler>
-							<!--  Destination for jasper file -->
-							<outputDirectory>src\\main\\resources\\reportes\\jasper</outputDirectory>
-						</configuration>
 					</execution>
 				</executions>
 				<dependencies>
-					<!-- These plugins are used to specify correct version for jrxml xml validation -->
 					<dependency>
 						<groupId>net.sf.jasperreports</groupId>
 						<artifactId>jasperreports</artifactId>
 						<version>${jasperreport.version}</version>
+
+						<exclusions>
+							<exclusion>
+								<groupId>com.lowagie</groupId>
+								<artifactId>itext</artifactId>
+							</exclusion>
+						</exclusions>
 					</dependency>
 
 					<dependency>
@@ -611,17 +622,109 @@
 						<version>1.2.16</version>
 					</dependency>
 
+					<dependency>
+						<groupId>com.lowagie</groupId>
+						<artifactId>itext</artifactId>
+						<version>2.1.7</version>
+						<scope>compile</scope>
+					</dependency>
+
+
 				</dependencies>
+				<configuration>
+					<!-- These are the default configurations: -->
+					<compiler>net.sf.jasperreports.engine.design.JRJdtCompiler</compiler>
+					<sourceDirectory>src/main/resources/reportes/jrxml</sourceDirectory>
+					<outputDirectory>src/main/resources/reportes/jasper</outputDirectory>
+					<outputFileExt>.jasper</outputFileExt>
+					<xmlValidation>true</xmlValidation>
+					<verbose>false</verbose>
+					<numberOfThreads>4</numberOfThreads>
+					<failOnMissingSourceDirectory>true</failOnMissingSourceDirectory>
+					<sourceScanner>org.codehaus.plexus.compiler.util.scan.StaleSourceScanner</sourceScanner>
+				</configuration>
+
 			</plugin>
+
+<!--			<plugin>-->
+<!--				<groupId>org.codehaus.mojo</groupId>-->
+<!--				<artifactId>jasperreports-maven-plugin</artifactId>-->
+<!--				<version>1.0-beta-2</version>-->
+
+<!--				<executions>-->
+<!--					<execution>-->
+<!--						<goals>-->
+<!--							<goal>compile-reports</goal>-->
+<!--						</goals>-->
+<!--						<configuration>-->
+<!--							&lt;!&ndash;  jrxml file  directory&ndash;&gt;-->
+<!--							<sourceDirectory>src\\main\\resources\\reportes\\jrxml</sourceDirectory>-->
+<!--							<sourceFileExt>.jrxml</sourceFileExt>-->
+<!--							<compiler>net.sf.jasperreports.engine.design.JRJavacCompiler</compiler>-->
+<!--							&lt;!&ndash;  Destination for jasper file &ndash;&gt;-->
+<!--							<outputDirectory>src\\main\\resources\\reportes\\jasper</outputDirectory>-->
+<!--						</configuration>-->
+<!--					</execution>-->
+<!--				</executions>-->
+<!--				<dependencies>-->
+					<!-- These plugins are used to specify correct version for jrxml xml validation -->
+<!--					<dependency>-->
+<!--						<groupId>net.sf.jasperreports</groupId>-->
+<!--						<artifactId>jasperreports</artifactId>-->
+<!--						<version>${jasperreport.version}</version>-->
+
+<!--						<exclusions>-->
+<!--							<exclusion>-->
+<!--								<groupId>com.lowagie</groupId>-->
+<!--								<artifactId>itext</artifactId>-->
+<!--							</exclusion>-->
+<!--						</exclusions>-->
+<!--					</dependency>-->
+
+<!--					<dependency>-->
+<!--						<groupId>log4j</groupId>-->
+<!--						<artifactId>log4j</artifactId>-->
+<!--						<version>1.2.16</version>-->
+<!--					</dependency>-->
+
+<!--					<dependency>-->
+<!--						<groupId>com.lowagie</groupId>-->
+<!--						<artifactId>itext</artifactId>-->
+<!--						<version>2.1.7</version>-->
+<!--						<scope>compile</scope>-->
+<!--					</dependency>-->
+
+
+<!--				</dependencies>-->
+<!--			</plugin>-->
+
 		</plugins>
 	</build>
 
+	<repositories>
+
+		<repository>
+			<id>lowagie</id>
+			<url>https://mvnrepository.com/artifact/com.lowagie/itext</url>
+		</repository>
+		<repository>
+			<id>jasperreports</id>
+			<url>http://jasperreports.sourceforge.net/maven2</url>
+		</repository>
+		<repository>
+			<id>jaspersoft-third-party</id>
+			<url>http://jaspersoft.artifactoryonline.com/jaspersoft/third-party-ce-artifacts/</url>
+		</repository>
+
+
+	</repositories>
+
 	<pluginRepositories>
-		<pluginRepository>
-			<id>spring-releases</id>
-			<name>Spring Releases</name>
-			<url>https://repo.spring.io/libs-release</url>
-		</pluginRepository>
+<!--		<pluginRepository>-->
+<!--			<id>spring-releases</id>-->
+<!--			<name>Spring Releases</name>-->
+<!--			<url>https://repo.spring.io/libs-release</url>-->
+<!--		</pluginRepository>-->
 	</pluginRepositories>
 
 </project>
