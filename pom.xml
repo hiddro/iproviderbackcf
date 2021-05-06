@@ -477,11 +477,17 @@
 			<artifactId>jasperreports-fonts</artifactId>
 			<version>6.0.0</version>
 		</dependency>
+
 		<dependency>
-			<groupId>com.itextpdf</groupId>
-			<artifactId>itextpdf</artifactId>
-			<version>${itext.version}</version>
+			<groupId>com.lowagie</groupId>
+			<artifactId>itext</artifactId>
+			<version>2.1.7</version>
 		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>com.itextpdf</groupId>-->
+<!--			<artifactId>itextpdf</artifactId>-->
+<!--			<version>${itext.version}</version>-->
+<!--		</dependency>-->
 
 		<!-- test -->
 		<dependency>
@@ -492,7 +498,6 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<!--<scope>test</scope>-->
 		</dependency>
 		<dependency>
 			<groupId>org.mockito</groupId>
@@ -626,7 +631,6 @@
 						<groupId>com.lowagie</groupId>
 						<artifactId>itext</artifactId>
 						<version>2.1.7</version>
-						<scope>compile</scope>
 					</dependency>
 
 
@@ -646,57 +650,6 @@
 
 			</plugin>
 
-<!--			<plugin>-->
-<!--				<groupId>org.codehaus.mojo</groupId>-->
-<!--				<artifactId>jasperreports-maven-plugin</artifactId>-->
-<!--				<version>1.0-beta-2</version>-->
-
-<!--				<executions>-->
-<!--					<execution>-->
-<!--						<goals>-->
-<!--							<goal>compile-reports</goal>-->
-<!--						</goals>-->
-<!--						<configuration>-->
-<!--							&lt;!&ndash;  jrxml file  directory&ndash;&gt;-->
-<!--							<sourceDirectory>src\\main\\resources\\reportes\\jrxml</sourceDirectory>-->
-<!--							<sourceFileExt>.jrxml</sourceFileExt>-->
-<!--							<compiler>net.sf.jasperreports.engine.design.JRJavacCompiler</compiler>-->
-<!--							&lt;!&ndash;  Destination for jasper file &ndash;&gt;-->
-<!--							<outputDirectory>src\\main\\resources\\reportes\\jasper</outputDirectory>-->
-<!--						</configuration>-->
-<!--					</execution>-->
-<!--				</executions>-->
-<!--				<dependencies>-->
-					<!-- These plugins are used to specify correct version for jrxml xml validation -->
-<!--					<dependency>-->
-<!--						<groupId>net.sf.jasperreports</groupId>-->
-<!--						<artifactId>jasperreports</artifactId>-->
-<!--						<version>${jasperreport.version}</version>-->
-
-<!--						<exclusions>-->
-<!--							<exclusion>-->
-<!--								<groupId>com.lowagie</groupId>-->
-<!--								<artifactId>itext</artifactId>-->
-<!--							</exclusion>-->
-<!--						</exclusions>-->
-<!--					</dependency>-->
-
-<!--					<dependency>-->
-<!--						<groupId>log4j</groupId>-->
-<!--						<artifactId>log4j</artifactId>-->
-<!--						<version>1.2.16</version>-->
-<!--					</dependency>-->
-
-<!--					<dependency>-->
-<!--						<groupId>com.lowagie</groupId>-->
-<!--						<artifactId>itext</artifactId>-->
-<!--						<version>2.1.7</version>-->
-<!--						<scope>compile</scope>-->
-<!--					</dependency>-->
-
-
-<!--				</dependencies>-->
-<!--			</plugin>-->
 
 		</plugins>
 	</build>
