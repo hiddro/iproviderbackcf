@@ -20,6 +20,8 @@
 		<result property="codigoAcreedorSap" column="acreedor_codigo_sap" />
     </resultMap>
 
+
+
 	<select id="getListProveedorByRuc" resultMap="proveedorFilterResultMap">
 		SELECT
 		p.id_proveedor,
@@ -42,6 +44,17 @@
 			AND pr.TIPO = 'TIPO_PERSONA'
 			AND pr.CODIGO = p.TIPO_PERSONA
 			AND p.ruc = #{ruc}
+	</select>
+
+	<select id="devuelveProveedor" resultMap="proveedorFilterResultMap">
+		SELECT
+			p.id_proveedor,
+			p.ruc,
+			p.razon_social,
+			p.direccion_fiscal,
+			p.email,
+			p.acreedor_codigo_sap
+		FROM PROVEEDOR p WHERE p.ruc=#{ruc}
 	</select>
 
 	<select id="getListProveedorMigrados" resultMap="proveedorFilterResultMap">

@@ -31,6 +31,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -238,6 +239,24 @@ public class ProveedorRest extends AppRest {
             return this.processObject(oProveedor.get());
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @RequestMapping(value = "devuelveProveedor/{RucProveedor}",
+            method = RequestMethod.GET, produces = {
+            MediaType.APPLICATION_JSON_VALUE,
+            MediaType.APPLICATION_XML_VALUE})
+    public ResponseEntity<List<ProveedorCustom>> devuelveProveedor(
+            @PathVariable("RucProveedor") String rucProveedor, HttpServletRequest request) throws PortalException {
+
+            HttpHeaders headers = new HttpHeaders();
+
+        //return this.processObject(this.proveedorService.devuelveProveedor(rucProveedor));
+        List<ProveedorCustom> lista = this.proveedorService.devuelveProveedor(rucProveedor);
+        return Optional.ofNullable(lista).map(l -> new ResponseEntity<>(l, HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+
+
+
     }
 
     @RequestMapping(value = "devuelveProveedorNew",

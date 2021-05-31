@@ -15,6 +15,8 @@ import java.util.List;
  * Created by Administrador on 29/08/2017.
  */
 public interface ProveedorService {
+    
+    
 
     void eliminarDatosProveedor(Integer idProveedor);
 
@@ -65,4 +67,5 @@ public interface ProveedorService {
 
     String saveEmail(String ruc, String email);
 
+    public List<ProveedorCustom> devuelveProveedor(String rucProveedor) throws  PortalException;
 }

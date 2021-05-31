@@ -1685,4 +1685,11 @@ public class ProveedorServiceImpl implements ProveedorService {
 
         return respuesta;
     }
+
+    @Override
+    public List<ProveedorCustom> devuelveProveedor(String rucProveedor) {
+        List<ProveedorCustom> proveedorDato = new ArrayList<>();
+        proveedorDato = proveedorMapperMybatis.devuelveProveedor(rucProveedor);
+        return proveedorDato;
+    }
 }

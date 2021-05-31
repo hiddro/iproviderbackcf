@@ -1,6 +1,7 @@
 package com.incloud.hcp.myibatis.mapper;
 
 import com.incloud.hcp.bean.ProveedorCustom;
+import com.incloud.hcp.domain.Proveedor;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -14,6 +15,9 @@ import java.util.List;
 @Mapper
 @Repository
 public interface ProveedorMapper {
+
+    List<ProveedorCustom> devuelveProveedor(String rucProveedor);
+
     List<ProveedorCustom> getListProveedorByRuc(String ruc);
 
     List<ProveedorCustom> getListProveedorByFiltro(
